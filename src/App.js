@@ -1,13 +1,10 @@
-import Operaciones from "./components/Operaciones";
+import { ListProductos } from "./components/productos";
 
 function App() {
-  
-
   return (
     <div className="app">
-     <Operaciones/>
+      <ListProductos />
     </div>
   );
 }
-
 export default App;
