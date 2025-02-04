@@ -5,8 +5,8 @@ export function ItemProductos(props) {
     const {nombre, descripcion}=props;
 
   return (
-    <div>
-      <Card style={{ width: "18rem" }}>
+   
+      <Card style={{ }} className=" align-content-center align-text-bottom">
         <Card.Img variant="top" src="holder.js/100px180" />
         <Card.Body>
           <Card.Title>{nombre}</Card.Title>
@@ -16,6 +16,5 @@ export function ItemProductos(props) {
           <Button variant="primary">Go somewhere</Button>
         </Card.Body>
       </Card>
-    </div>
   );
 }
