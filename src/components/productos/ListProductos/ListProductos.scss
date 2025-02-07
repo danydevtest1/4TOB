@@ -1,13 +1,15 @@
 .card-it{
     background-color: #ffff;
-    
     align-items: center !important;
     align-content: center !important;
 
     &__cad{
+        //display: flex;
         align-items: center !important;
         align-content: center !important;
         text-align: center !important;
-        width: 40%;
+        padding-top: 10px;
+        //flex-direction: column;
+        width: 100%;
     }
 }

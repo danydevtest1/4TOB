@@ -15,6 +15,36 @@ export const Productos=[{
     descripcion:"Comida chatarra con mayor calorias",
     precio:25,
     unidad:"150gr"
+},
+{
+    nombre:"Galleta",
+    descripcion:"Comida chatarra con mayor calorias",
+    precio:25,
+    unidad:"150gr"
+},
+{
+    nombre:"Galleta",
+    descripcion:"Comida chatarra con mayor calorias",
+    precio:25,
+    unidad:"150gr"
+},
+{
+    nombre:"Galleta",
+    descripcion:"Comida chatarra con mayor calorias",
+    precio:25,
+    unidad:"150gr"
+},
+{
+    nombre:"Galleta",
+    descripcion:"Comida chatarra con mayor calorias",
+    precio:25,
+    unidad:"150gr"
+},
+{
+    nombre:"Galleta",
+    descripcion:"Comida chatarra con mayor calorias",
+    precio:25,
+    unidad:"150gr"
 }
 
 ]
