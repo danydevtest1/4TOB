@@ -5,12 +5,14 @@
   "dependencies": {
     "bootstrap": "^5.3.3",
     "cra-template": "1.2.0",
+    "formik": "^2.4.6",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.1.5",
     "react-scripts": "5.0.1",
-    "sass": "^1.83.4"
+    "sass": "^1.83.4",
+    "yup": "^1.6.1"
   },
   "scripts": {
     "start": "react-scripts start",
