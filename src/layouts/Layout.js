@@ -10,7 +10,7 @@ export function Layout({ children }) {
       <div className="init">
         <Menu />
       </div>
-      <div className="body p-2">{children}</div>
+      <div className="body p-4">{children}</div>
       <div className="footer">
         <Footer />
       </div>

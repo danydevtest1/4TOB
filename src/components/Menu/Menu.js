@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 export function Menu() {
   return (
     <nav className="navbar bg-body-tertiary fixed-top">
-      <div class="container-fluid">
-        <Link class="navbar-brand" to="/">
+      <div className="container-fluid">
+        <Link className="navbar-brand" to="/">
           Offcanvas navbar
         </Link>
         <button
