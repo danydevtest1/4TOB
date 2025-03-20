@@ -2,6 +2,9 @@ import { useState } from "react";
 import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
 import { initialValues, validationSchema } from "./FormProductos.form";
 import { useFormik } from "formik";
+import {Producto} from '../../../api';
+
+const ctrProducto=new Producto();
 
 export function FormProductos() {
   //const [datos, setDatos] = useState([]);
@@ -10,8 +13,12 @@ export function FormProductos() {
     initialValues: initialValues(),
     validationSchema: validationSchema(),
     validateOnChange: false,
-    onSubmit: (formValue) => {
+    onSubmit:async (formValue) => {
+
+        const guardarProducto= await ctrProducto.createProducto(formValue);
+      console.log(guardarProducto);  
       console.log(formValue);
+      
     },
   });
 
