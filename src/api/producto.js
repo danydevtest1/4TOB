@@ -35,4 +35,10 @@ export class Producto{
             throw error
         }
     }
+
+    async buscarProductos(){
+        const urlDir=`${this.baseApi}/${ENV.API_ROUTES.BUSCARPRODUCTOS}`;
+        const getProducto= await Axios.get(urlDir);
+        return getProducto.data;
+    }
 }

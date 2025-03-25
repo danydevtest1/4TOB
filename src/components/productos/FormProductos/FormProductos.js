@@ -1,13 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
 import { initialValues, validationSchema } from "./FormProductos.form";
 import { useFormik } from "formik";
 import {Producto} from '../../../api';
+import {TableProducts}from "../TableProducts";
 
 const ctrProducto=new Producto();
 
 export function FormProductos() {
-  //const [datos, setDatos] = useState([]);
+  const [datos, setDatos] = useState([]);
 
   const formik = useFormik({
     initialValues: initialValues(),
@@ -15,23 +16,24 @@ export function FormProductos() {
     validateOnChange: false,
     onSubmit:async (formValue) => {
 
-        const guardarProducto= await ctrProducto.createProducto(formValue);
-      console.log(guardarProducto);  
-      console.log(formValue);
+        await ctrProducto.createProducto(formValue);
+     // console.log(guardarProducto);  
+      //console.log(formValue);
+      downloadDAta();
       
     },
   });
 
-  /*  const onChange=(e)=>{
-    const {name,value}=e.target;
-    setDatos({...datos, [name]:value})
+  const downloadDAta=async()=>{
+    const info= await ctrProducto.buscarProductos();
+    setDatos(info);
+    console.log(info);
+    
   }
 
-const onSubmit=(e)=>{
-  e.preventDefault();
-  console.log(datos);
-  
-} */
+useEffect(() => {
+  downloadDAta();
+}, [])
 
   return (
     <div className="p-5">
@@ -71,11 +73,13 @@ const onSubmit=(e)=>{
             </InputGroup>
           </Form.Group>
         </Row>
-
         <Button variant="success" type="submit">
           Enviar
         </Button>
       </Form>
+      <Row>
+       <TableProducts datos={datos}/>
+      </Row>
     </div>
   );
 }
