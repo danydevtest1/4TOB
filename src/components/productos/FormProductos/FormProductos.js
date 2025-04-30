@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
 import { initialValues, validationSchema } from "./FormProductos.form";
 import { useFormik } from "formik";
-import {Producto} from '../../../api';
-import {TableProducts}from "../TableProducts";
+import { Producto } from "../../../api";
+import { TableProducts } from "../TableProducts";
 
-const ctrProducto=new Producto();
+const ctrProducto = new Producto();
 
 export function FormProductos() {
   const [datos, setDatos] = useState([]);
@@ -14,26 +14,34 @@ export function FormProductos() {
     initialValues: initialValues(),
     validationSchema: validationSchema(),
     validateOnChange: false,
-    onSubmit:async (formValue) => {
-
-        await ctrProducto.createProducto(formValue);
-     // console.log(guardarProducto);  
-      //console.log(formValue);
+    onSubmit: async (formValue) => {
+      await ctrProducto.createProducto(formValue);
+      // console.log(guardarProducto);
+      console.log(formValue);
       downloadDAta();
-      
     },
   });
 
-  const downloadDAta=async()=>{
-    const info= await ctrProducto.buscarProductos();
+  const downloadDAta = async () => {
+    const info = await ctrProducto.buscarProductos();
     setDatos(info);
     console.log(info);
-    
-  }
+  };
 
-useEffect(() => {
-  downloadDAta();
-}, [])
+  const eliminarProducto = async (id) => {
+    try {
+      await ctrProducto.deleteProducto(id);
+      downloadDAta();
+    } catch (error) {
+      throw error;
+    }
+  
+  };
+  
+
+  useEffect(() => {
+    downloadDAta();
+  }, []);
 
   return (
     <div className="p-5">
@@ -78,7 +86,7 @@ useEffect(() => {
         </Button>
       </Form>
       <Row>
-       <TableProducts datos={datos}/>
+        <TableProducts datos={datos} eliminar={eliminarProducto}/>
       </Row>
     </div>
   );

@@ -41,4 +41,10 @@ export class Producto{
         const getProducto= await Axios.get(urlDir);
         return getProducto.data;
     }
+
+    async deleteProducto(id){
+        const urlDir=`${this.baseApi}/${ENV.API_ROUTES.DELETEPRODUCTOS}/${id}`;
+        const delProduc= await Axios.delete(urlDir);
+        return delProduc;
+    }
 }

@@ -4,6 +4,7 @@ export const ENV={
     BASE_API:dirLocal,
     API_ROUTES:{
         CREARPRODUCTO:"/createproducto",
-        BUSCARPRODUCTOS:"/getproducto"
+        BUSCARPRODUCTOS:"/getproducto",
+        DELETEPRODUCTOS:"/delproducto"
     }
 }
