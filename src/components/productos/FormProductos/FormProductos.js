@@ -1,16 +1,23 @@
 import { useState, useEffect } from "react";
-import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
-import { initialValues, validationSchema } from "./FormProductos.form";
-import { useFormik } from "formik";
+import { Button, Col, Form, InputGroup, Row, Modal } from "react-bootstrap";
+/* import { initialValues, validationSchema } from "./FormProductos.form";
+import { useFormik } from "formik"; */
 import { Producto } from "../../../api";
 import { TableProducts } from "../TableProducts";
+import { FormEdit } from "../FormEdit";
+
 
 const ctrProducto = new Producto();
 
 export function FormProductos() {
   const [datos, setDatos] = useState([]);
+  const [show,setShow]=useState(false);
+  const [reload, setReload]=useState(false);
 
-  const formik = useFormik({
+  const openClose=()=>setShow((prevState)=>!prevState);
+  const onReloaad=()=>setReload((prevState)=>!prevState);
+
+/*   const formik = useFormik({
     initialValues: initialValues(),
     validationSchema: validationSchema(),
     validateOnChange: false,
@@ -20,7 +27,7 @@ export function FormProductos() {
       console.log(formValue);
       downloadDAta();
     },
-  });
+  });  */
 
   const downloadDAta = async () => {
     const info = await ctrProducto.buscarProductos();
@@ -41,53 +48,24 @@ export function FormProductos() {
 
   useEffect(() => {
     downloadDAta();
-  }, []);
+  }, [reload]);
 
   return (
     <div className="p-5">
-      <Form onSubmit={formik.handleSubmit}>
-        <Row className="mb-3">
-          <Form.Group as={Col} sm="12" md="6" xl="4">
-            <Form.Label>Nombre Producto</Form.Label>
-            <Form.Control
-              name="nombre"
-              type="text"
-              placeholder="Producto"
-              value={formik.values.nombre}
-              onChange={formik.handleChange}
-            />
-          </Form.Group>
-          <Form.Group as={Col} sm="12" md="6" xl="4">
-            <Form.Label>Descripcion</Form.Label>
-            <Form.Control
-              required
-              type="text"
-              name="descripcion"
-              value={formik.values.descripcion}
-              onChange={formik.handleChange}
-              placeholder="Descripcion del producto"
-            />
-          </Form.Group>
-          <Form.Group as={Col} sm="12" md="6" xl="4">
-            <Form.Label>Precio</Form.Label>
-            <InputGroup>
-              <Form.Control
-                type="number"
-                placeholder="Precio"
-                name="precio"
-                value={formik.values.precio}
-                onChange={formik.handleChange}
-              />
-            </InputGroup>
-          </Form.Group>
-        </Row>
-        <Button variant="success" type="submit">
-          Enviar
-        </Button>
-      </Form>
+    <Button variant="primary" onClick={openClose}>Agregar</Button>
       <Row>
-        <TableProducts datos={datos} eliminar={eliminarProducto}/>
+        <TableProducts datos={datos} eliminar={eliminarProducto} onReloaad={onReloaad}/>
       </Row>
+      <Row>
+        <Modal show={show} onHide={openClose} size="lg">
+          <Modal.Header closeButton>
+            <Modal.Title>
+              Agregar Producto
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body><FormEdit onReloaad={onReloaad} closed={openClose}/></Modal.Body>
+        </Modal>
+      </Row> 
     </div>
   );
 }

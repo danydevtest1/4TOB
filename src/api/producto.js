@@ -43,8 +43,31 @@ export class Producto{
     }
 
     async deleteProducto(id){
-        const urlDir=`${this.baseApi}/${ENV.API_ROUTES.DELETEPRODUCTOS}/${id}`;
-        const delProduc= await Axios.delete(urlDir);
-        return delProduc;
+        try {
+            const urlDir=`${this.baseApi}/${ENV.API_ROUTES.DELETEPRODUCTOS}/${id}`;
+            const response= await Axios.delete(urlDir);
+            if(response.status===200) return response;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async updateProducto(id,dataAlumno){
+        try {
+            const data=dataAlumno;
+            const formData=new FormData();
+
+            Object.keys(data).forEach((key)=>{
+                formData.append(key,data[key]);
+            });
+
+            const urlDir=`${this.baseApi}/${ENV.API_ROUTES.UPDATEPRODUCTO}/${id}`;
+            const response=await Axios.patch(urlDir,formData);
+
+            if(response.status===200) return response;
+
+        } catch (error) {
+            throw error;
+        }
     }
 }

@@ -1,10 +1,10 @@
 import * as Yup from 'yup';
 
-export function initialValues(){
+export function initialValues(dato){
 return {
-    nombre:"",
-    descripcion:"",
-    precio:""
+    nombre:dato?.nombre || "",
+    descripcion:dato?.descripcion || "",
+    precio:dato?.precio || ""
 }
 }
 
